@@ -1,0 +1,174 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: How to write a good documentation for APIs with Swagger 
+  description: >-
+    This section is used to write a functionnal description for the project
+  contact:
+    name: The Product Owner name
+    email: email.for.product.owner@company.com
+    url: 'http://www.company.com'
+host: the.host.for.api
+basePath: /application-context/version-x/
+tags:
+  - name: first functionnal section
+    description: 'This is the first component in the application'
+  - name: second functionnal section
+    description: 'This is the first component in the application'
+schemes:
+  - https
+produces:
+  - application/json
+  - application/image
+  - other mediatype
+consumes:
+  - application/json
+  - multipart/form-data
+  - ' application/x-www-form-urlencoded'
+  - other mediatype
+securityDefinitions:
+  basic_auth:
+    type: basic
+definitions:
+  '201':
+    type: object
+    properties:
+      location:
+        description: Location of the ressouce created
+        type: string
+  Error:
+    description: Error description
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+  data:
+    type: object
+    properties:
+      first_param:
+        type: string
+        description: parameter number one
+      second_param:
+        type: string
+        description: parameter number two
+  data_list :
+    type: object
+    description: data list
+    properties:
+      datas:
+        type: array
+        items:
+          $ref: '#/definitions/data'
+      paging:
+        $ref: '#/definitions/Paging'
+  Paging:
+    description: result pagination
+    type: object
+    properties:
+      next:
+        description: next page
+        type: string
+      prev:
+        description: previous page
+        type: string
+      total_results:
+        description: total_result
+        type: number
+  Errors:
+    description: Error list
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/Error'
+parameters:
+  parameter_identifier:
+    name: parameter_identifier
+    in: path
+    description: The parameter given in parameter
+    required: true
+    maxLength: 40
+    type: string
+  post_param:
+    in: body
+    name: parameter
+    description: data input
+    required: true
+    schema:
+      $ref: '#/definitions/data'
+paths:
+  /path_meaning/:
+    post:
+      tags:
+        - first functionnal section
+      summary: Post example
+      description: >-
+        This API is used for creation.
+      operationId: creation
+      parameters:
+      - $ref: '#/parameters/post_param'
+      responses:
+        '201':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/201'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Errors'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+        - basic_auth: []
+    get:
+      summary: List of data
+      description: Get all data
+      operationId: getAllData
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/data_list'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Errors'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - basic_auth: [
+          ] 
+  /path_meaning/{parameter_identifier}:
+    get:
+      summary: Get once
+      description: This API is used to get data registred.
+      operationId: getData
+      parameters:
+      - $ref: '#/parameters/parameter_identifier'
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/data'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Errors'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - basic_auth: [
+          ]
