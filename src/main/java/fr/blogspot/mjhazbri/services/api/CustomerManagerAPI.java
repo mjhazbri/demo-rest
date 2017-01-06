@@ -6,6 +6,7 @@ package fr.blogspot.mjhazbri.services.api;
 import java.net.URI;
 
 import javax.inject.Inject;
+import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import org.slf4j.Logger;
@@ -46,9 +48,14 @@ public class CustomerManagerAPI {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addCustomer(CustomerInput customerInput) {
 		LOGGER.debug("addCustomer .. ");
+		if (customerInput == null || customerInput.getInvoices() == null
+				|| customerInput.getInvoices().isEmpty()) {
+			throw new ClientErrorException(Status.BAD_REQUEST);
+		}
 		Customer customer = customerManager.confirm(
 				mapper.mapCustomer(customerInput),
-				mapper.mapInvoices(customerInput));
+				customerInput.getInvoices() == null ? null : mapper
+						.mapInvoices(customerInput));
 		URI location = uriInfo.getRequestUriBuilder()
 				.path("/" + customer.getId()).build();
 		return Response.accepted().location(location).build();

@@ -5,6 +5,8 @@
 	version="2.0">
 	<persistence-unit name="demoPU" transaction-type="JTA">
 		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+		<class>fr.blogspot.mjhazbri.entities.Customer</class>
+		<class>fr.blogspot.mjhazbri.entities.Invoice</class>
 		<properties>
 			<property name="hibernate.ogm.datastore.provider" value="mongodb" />
 			<property name="hibernate.ogm.datastore.database" value="rest_api" />

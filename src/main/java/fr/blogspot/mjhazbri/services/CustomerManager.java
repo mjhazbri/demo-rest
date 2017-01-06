@@ -3,8 +3,8 @@
  */
 package fr.blogspot.mjhazbri.services;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -37,10 +37,9 @@ public class CustomerManager {
 	 * @param customer
 	 * @param invoices
 	 */
-	@SuppressWarnings("unchecked")
 	public Customer confirm(Customer customer, List<Invoice> invoices) {
 		LOGGER.debug(".................. confirmation ...............>> begin");
-		customer.setInvoices((Set<Invoice>) invoices);
+		customer.setInvoices(new HashSet<Invoice>(invoices));
 		if (customer.getId() == null) {
 			LOGGER.debug(".................. confirmation ...............>> add customer because does not exist ..");
 			customer = customerDao.create(customer);
