@@ -1,4 +1,4 @@
-package fr.blogspot.mjhazbri.tools;
+package fr.blogspot.mjhazbri.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.Version;

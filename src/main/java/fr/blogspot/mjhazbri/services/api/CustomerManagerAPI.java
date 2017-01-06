@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import fr.blogspot.mjhazbri.entities.Customer;
 import fr.blogspot.mjhazbri.services.CustomerManager;
 import fr.blogspot.mjhazbri.services.api.input.CustomerInput;
-import fr.blogspot.mjhazbri.tools.Mapper;
+import fr.blogspot.mjhazbri.utils.Mapper;
 
 /**
  * @author jhazbri

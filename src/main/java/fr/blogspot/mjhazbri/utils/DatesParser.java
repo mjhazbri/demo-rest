@@ -1,12 +1,12 @@
-package fr.blogspot.mjhazbri.tools;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package fr.blogspot.mjhazbri.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Parses simple types and returns null instead of throwing exceptions.

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.blogspot.mjhazbri.tools;
+package fr.blogspot.mjhazbri.utils;
 
 /**
  * @author jhazbri

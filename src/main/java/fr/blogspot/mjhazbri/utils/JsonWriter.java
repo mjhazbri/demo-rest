@@ -1,4 +1,4 @@
-package fr.blogspot.mjhazbri.tools;
+package fr.blogspot.mjhazbri.utils;
 
 import java.io.IOException;
 import java.io.OutputStream;

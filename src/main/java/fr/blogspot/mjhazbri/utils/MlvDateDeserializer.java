@@ -1,4 +1,4 @@
-package fr.blogspot.mjhazbri.tools;
+package fr.blogspot.mjhazbri.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

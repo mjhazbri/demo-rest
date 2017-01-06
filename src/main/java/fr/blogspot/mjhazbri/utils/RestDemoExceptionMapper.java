@@ -1,4 +1,4 @@
-package fr.blogspot.mjhazbri.tools;
+package fr.blogspot.mjhazbri.utils;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.WebApplicationException;
